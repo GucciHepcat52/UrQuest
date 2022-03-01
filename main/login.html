@@ -9,7 +9,7 @@
       name="description"
       content="Users can track their Guild Wars 2 characters"
     />
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,16 +23,17 @@
       <div>Welcome to UrQuest!</div>
     </section>
     <section id="login-box">
-        <form>
-            <label id="login-label">Login to Account</label><br>
-            <label for="username">Enter Username:</label>
-            <input type="text" name="username" id="username"><br>
-            <label for="password">Enter Password:</label>
-            <input type="password" name="password" id="password"><br>
-            <input type="submit" id="login-button" value="Submit">
-        </form>
+      <form>
+        <label id="login-label">Login to Account</label><br />
+        <label for="username">Enter Username:</label>
+        <input type="text" name="username" id="username" required /><br />
+        <label for="password">Enter Password:</label>
+        <input type="password" name="password" id="password" required /><br />
+        <input type="submit" id="login-button" value="Submit" />
+        <a href="create-account.html">Create Account Here</a>
+      </form>
     </section>
 
-    <script src="main.js"></script>
+    <script src="login.js"></script>
   </body>
 </html>
