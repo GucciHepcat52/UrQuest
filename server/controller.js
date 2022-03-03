@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 const bcrypt = require("bcryptjs");
 const Sequelize = require("sequelize");
 const { CONNECTION_STRING } = process.env;
@@ -31,5 +32,36 @@ module.exports = {
         res.status(200).send(dbRes[0]);
       })
       .catch((err) => console.log(err));
+  },
+  getUserInfo: async (req, res) => {
+    const { username, password } = req.query;
+    let userTmp;
+
+    await sequelize
+      .query(
+        `
+      SELECT user_id, username, password
+      FROM users
+      WHERE username = '${username}';
+    `
+      )
+      .then((dbRes) => {
+        userTmp = dbRes[0];
+        console.log(`${userTmp[0].user_id}`);
+      })
+      .catch((err) => console.log(err));
+
+    try {
+      const verified = bcrypt.compareSync(password, userTmp[0].password);
+
+      if (verified) {
+        delete userTmp[0].password;
+        res.status(200).send(userTmp);
+      } else {
+        res.status(400).send("Wrong password");
+      }
+    } catch (error) {
+      res.status(400).send(error);
+    }
   },
 };

@@ -9,7 +9,11 @@ const app = express();
 app.use(express.json(""));
 app.use(cors());
 
-app.post('/api/users', ctrl.createAccount);
+// Creates user for new users
+app.post("/api/users", ctrl.createAccount);
+
+// Gets user info for login
+app.get("/api/users", ctrl.getUserInfo);
 
 app.listen(SERVER_PORT, () =>
   console.log(`Server is running on port ${SERVER_PORT}`)
