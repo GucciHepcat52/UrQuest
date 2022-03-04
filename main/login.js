@@ -18,7 +18,7 @@ const submitHandler = async (event) => {
         userId = userTmp.user_id;
         loggedIn = true;
       });
-  } catch (error) {
+  } catch(error) {
     console.log(error);
   }
   

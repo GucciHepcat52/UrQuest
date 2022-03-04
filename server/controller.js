@@ -64,4 +64,39 @@ module.exports = {
       res.status(400).send(error);
     }
   },
+  createCharacter: async (req, res) => {
+    const { accountId, characterName } = req.body;
+
+    await sequelize
+      .query(
+        `
+      INSERT INTO characters
+      (account_id, character_name)
+      VALUES
+      (${accountId}, '${characterName}')
+
+      RETURNING *;
+    `
+      )
+      .then((dbRes) => {
+        res.status(200).send(dbRes[0][0]);
+        console.log("created character");
+      })
+      .catch((error) => console.log(error));
+  },
+  getAllCharacters: async (req, res) => {
+    const { account_id } = req.query;
+
+    await sequelize
+      .query(
+        `
+      SELECT * FROM characters
+      WHERE account_id = ${account_id};
+    `
+      )
+      .then((dbRes) => {
+        res.status(200).send(dbRes[0]);
+      })
+      .catch((err) => console.log(err));
+  },
 };

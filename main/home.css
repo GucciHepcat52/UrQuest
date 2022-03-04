@@ -209,7 +209,7 @@ li {
   margin-bottom: 10px;
 }
 
-#create-character-form > #charcter-creation-input {
+#create-character-form > #character-creation-input {
   margin-bottom: 60px;
   height: 30px;
   padding: 5px;
@@ -218,7 +218,7 @@ li {
   font-size: 15px;
 }
 
-#create-character-form > #charcter-creation-submit {
+#create-character-form > #character-creation-submit {
   height: 30px;
   align-self: center;
   width: 50%;

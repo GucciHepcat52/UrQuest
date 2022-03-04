@@ -11,5 +11,5 @@ CREATE TABLE characters (
   character_id SERIAL PRIMARY KEY,
   account_id INTEGER NOT NULL REFERENCES users(user_id),
   character_name VARCHAR(50) NOT NULL,
-  information VARCHAR(2000) NOT NULL
+  information VARCHAR(2000)
 );
