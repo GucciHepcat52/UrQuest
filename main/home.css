@@ -187,3 +187,40 @@ li {
   font-size: 15px;
   align-self: center;
 }
+
+#create-character-form {
+  box-sizing: border-box;
+  height: 200px;
+  width: 400px;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 2px black solid;
+  border-radius: 10px;
+  align-self: center;
+  background-color: white;
+  font-family: "Cinzel", serif;
+  font-family: "Libre Baskerville", serif;
+}
+
+#create-character-form > label {
+  align-self: center;
+  margin-bottom: 10px;
+}
+
+#create-character-form > #charcter-creation-input {
+  margin-bottom: 60px;
+  height: 30px;
+  padding: 5px;
+  border: 2px black solid;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+#create-character-form > #charcter-creation-submit {
+  height: 30px;
+  align-self: center;
+  width: 50%;
+  border-radius: 10px;
+}
