@@ -186,11 +186,23 @@ li {
   font-family: "Libre Baskerville", serif;
   font-size: 15px;
   align-self: center;
+  cursor: pointer;
+}
+
+#character-delete {
+  position: relative;
+  height: 30px;
+  width: 10%;
+  font-family: "Cinzel", serif;
+  font-family: "Libre Baskerville", serif;
+  font-size: 15px;
+  align-self: flex-end;
+  cursor: pointer;
 }
 
 #create-character-form {
   box-sizing: border-box;
-  height: 200px;
+  height: 300px;
   width: 400px;
   padding: 10px;
   position: relative;
@@ -218,9 +230,19 @@ li {
   font-size: 15px;
 }
 
+#create-character-form > #character-creation-info {
+  margin-bottom: 60px;
+  height: 30px;
+  padding: 5px;
+  border: 2px black solid;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
 #create-character-form > #character-creation-submit {
   height: 30px;
   align-self: center;
   width: 50%;
   border-radius: 10px;
+  cursor: pointer;
 }

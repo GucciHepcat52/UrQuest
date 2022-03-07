@@ -10,7 +10,7 @@ app.use(express.json(""));
 app.use(cors());
 
 // Loads users characters
-app.get('/api/characters', ctrl.getAllCharacters)
+app.get("/api/characters", ctrl.getAllCharacters);
 
 // Creates user for new users
 app.post("/api/users", ctrl.createAccount);
@@ -20,6 +20,9 @@ app.get("/api/users", ctrl.getUserInfo);
 
 // Creates character for specific user
 app.post("/api/characters", ctrl.createCharacter);
+
+// Deletes character for specific user
+app.delete("/api/characters/:id", ctrl.deleteCharacterInfo);
 
 app.listen(SERVER_PORT, () =>
   console.log(`Server is running on port ${SERVER_PORT}`)

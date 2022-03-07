@@ -65,15 +65,15 @@ module.exports = {
     }
   },
   createCharacter: async (req, res) => {
-    const { accountId, characterName } = req.body;
+    const { accountId, characterName, characterInfo } = req.body;
 
     await sequelize
       .query(
         `
       INSERT INTO characters
-      (account_id, character_name)
+      (account_id, character_name, information)
       VALUES
-      (${accountId}, '${characterName}')
+      (${accountId}, '${characterName}', '${characterInfo}')
 
       RETURNING *;
     `
@@ -92,6 +92,21 @@ module.exports = {
         `
       SELECT * FROM characters
       WHERE account_id = ${account_id};
+    `
+      )
+      .then((dbRes) => {
+        res.status(200).send(dbRes[0]);
+      })
+      .catch((err) => console.log(err));
+  },
+  deleteCharacterInfo: async (req, res) => {
+    await sequelize
+      .query(
+        `
+      DELETE FROM characters
+      WHERE character_id = ${req.params.id}
+
+      RETURNING *;
     `
       )
       .then((dbRes) => {
