@@ -4,6 +4,8 @@ const logoutBtn = document.getElementById("logout");
 const charList = document.getElementById("character-list");
 const account_id = window.localStorage.getItem("UrQuest-user");
 
+const characters = {};
+
 const getAllUserCharacters = async () => {
   await axios
     .get(`http://localhost:4004/api/characters?account_id=${account_id}`)
@@ -14,6 +16,8 @@ const getAllUserCharacters = async () => {
 
         toonBtn.textContent = res.data[i].character_name;
         charList.appendChild(toonBtn);
+
+        characters[res.data[i].character_id] = res.data[i];
       }
     })
     .catch((error) => console.log(error));
