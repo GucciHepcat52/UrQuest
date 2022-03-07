@@ -22,14 +22,27 @@ module.exports = {
     sequelize
       .query(
         `
-            INSERT INTO users
-            (first_name, last_name, username, email, password)
-            VALUES
-            ('${firstName}', '${lastName}', '${username}', '${email}', '${passwordHash}');
+            SELECT username FROM users
+            WHERE username = '${username}';
         `
       )
       .then((dbRes) => {
-        res.status(200).send(dbRes[0]);
+        if (dbRes[0].length === 0) {
+          sequelize
+            .query(
+              `
+          INSERT INTO users
+          (first_name, last_name, username, email, password)
+          VALUES
+          ('${firstName}', '${lastName}', '${username}', '${email}', '${passwordHash}');
+          `
+            )
+            .then((dbRes) => {
+              res.status(200).send(dbRes[0]);
+            });
+        } else {
+          res.status(500).send("Username Unavailable");
+        }
       })
       .catch((err) => console.log(err));
   },

@@ -23,7 +23,7 @@ const submitHandler = (event) => {
       console.log(res);
       alert("Account was created successful!");
     })
-    .catch((err) => console.log(err));
+    .catch(alert("Account already in use"));
 
   firstName.value = "";
   lastName.value = "";
