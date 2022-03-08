@@ -9,6 +9,13 @@ Features:
 - Add characters and current character objective
 - Delete character functionality
 
+Tech Stack:
+- HTML/CSS
+- Javascript
+- Express
+- Sequelize
+- Cors
+
 Install Instructions:
 - clone repo
 - run npm install for dependencies
