@@ -18,7 +18,8 @@ const submitHandler = async (event) => {
         userId = userTmp.user_id;
         loggedIn = true;
       });
-  } catch(error) {
+  } catch (error) {
+    alert("Invalid Username or Password");
     console.log(error);
   }
   

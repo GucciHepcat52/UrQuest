@@ -59,10 +59,15 @@ module.exports = {
     `
       )
       .then((dbRes) => {
-        userTmp = dbRes[0];
-        console.log(`${userTmp[0].user_id}`);
+        if (dbRes[0].length > 0) {
+          userTmp = dbRes[0];
+          console.log(`${userTmp[0].user_id}`);
+        }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        res.status(400).send("Username is invalid");
+      });
 
     try {
       const verified = bcrypt.compareSync(password, userTmp[0].password);
@@ -83,17 +88,28 @@ module.exports = {
     await sequelize
       .query(
         `
-      INSERT INTO characters
-      (account_id, character_name, information)
-      VALUES
-      (${accountId}, '${characterName}', '${characterInfo}')
-
-      RETURNING *;
-    `
+        SELECT character_name FROM characters
+        WHERE character_name = '${characterName}';
+      `
       )
       .then((dbRes) => {
-        res.status(200).send(dbRes[0][0]);
-        console.log("created character");
+        if (dbRes[0].length === 0) {
+          sequelize
+            .query(
+              `INSERT INTO characters 
+              (account_id, character_name, information) 
+              VALUES (${accountId}, '${characterName}', '${characterInfo}') 
+              
+              RETURNING *;
+            `
+            )
+            .then((dbRes) => {
+              res.status(200).send(dbRes[0][0]);
+              console.log("created character");
+            });
+        } else {
+          res.status(500).send("Character name unavailable");
+        }
       })
       .catch((error) => console.log(error));
   },

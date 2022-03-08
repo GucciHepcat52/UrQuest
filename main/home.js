@@ -65,7 +65,8 @@ const submitNewCharacter = async (e) => {
         location.reload();
       });
   } catch (error) {
-    return console.log(error);
+    console.log(error);
+    alert("Character name is unavailable");
   }
 
   document.getElementById("create-character-form").remove();
@@ -89,7 +90,9 @@ const showCharacterInfo = (event) => {
 
   charCard.innerHTML = `<h1 id="name">${event.target.textContent}</h1>
   <li>${characters[event.target.textContent].information}</li>
-  <button id="character-delete" value="${characters[event.target.textContent].character_id}">Delete</button>`;
+  <button id="character-delete" value="${
+    characters[event.target.textContent].character_id
+  }">Delete</button>`;
 
   infoBox.appendChild(charCard);
   const deleteCharBtn = document.getElementById("character-delete");
